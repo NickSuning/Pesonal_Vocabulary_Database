@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<p style="font-size:50px;">Hello <b>{{current_user.user_name}}</b> !! You have logged in.</p>
+<p style="font-size:30px"> You have <b>{{user_voca_no}} </b>entries of meaning and <b>{{word_no}}</b> words in your vocabulary database!! Click on the below options. </p>
+<div class="list-group">
+  <a href="/addition" class="list-group-item">Add new entry into your vocabularies!</a>
+  <a href="/test" class="list-group-item">Challenge youself with a spelling test!</a>
+  </div>
+
+<h1 align="center">Your Vocabularies</h1>
+<table id = "vocabulary" class="table table-striped">
+    <thead>
+    <tr>
+    <th>Entry ID</th>
+    <th>Word</th>
+    <th>Meaning</th>
+    </tr>
+    <thead>
+    <tbody>
+
+        {% for vocabulary in current_user.vocabularies %}
+            <tr>
+            <td>{{vocabulary.id}}</td>
+            <td>{{vocabulary.word}}</td>
+            <td>{{vocabulary.meaning}}
+                <button type="button" class="close" onclick="deleteVocabulary({{vocabulary.id}})" data-toggle="tooltip" data-placement="top" title="Click to delete this entry"> <!-- feeding vocabulary.id in the loop to JS function -->
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </td>
+            </tr>
+        {% endfor %}
+
+    <tbody>
+</table>
+{% endblock %}
+

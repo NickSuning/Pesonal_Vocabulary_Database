@@ -1,0 +1,3 @@
+id,user_name,password
+1,nicksu,pbkdf2:sha256:260000$wL2hEVIuNQcb3J1O$8c98030244d935ccefa2e78285c00c17c05e81e539f52c7c153010e7e1afa50c
+2,nicksu1,pbkdf2:sha256:260000$kKRS2EAbetlPwpZd$e23bb4069065a98f86b43dd9632a1e607e38e487d09f5be233989c2a6edd3270

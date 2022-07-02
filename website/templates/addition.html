@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Adding New Vocabulary Page{% endblock %}
+{% block content %}
+
+<p style="font-size:50px;">Hello <b>{{current_user.user_name}}</b> !! You can expand your vocabularies by adding new pair of word and meaning!!</p>
+<p style="font-size:30px"> You have <b>{{user_voca_no}} </b>entries of meaning and <b>{{word_no}}</b> words in your vocabulary database!! </p>
+<form method="POST">
+  <h3 align="left">Enter a new word you like to add.</h3>
+  <div class="input-group mb-3">
+    <input
+      class="form-control"
+      id="word_input"
+      name="word_input"
+      placeholder="Enter a word in lowercase"
+    />
+  </div>
+  <h3 align="left">Enter a new meaning you like to add. You can have entries of the same word with different meanings!</h3>
+  <div class="input-group mb-3">
+    <input
+      class="form-control"
+      id="meaning_input"
+      name="meaning_input"
+      placeholder="Enter the meaning sentence"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="submit">Confirm</button>
+    </div>
+  </div>
+
+
+</form>
+
+
+{% endblock %}
+

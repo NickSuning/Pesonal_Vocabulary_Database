@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Test Page{% endblock %}
+{% block content %}
+
+<p style="font-size:50px;">Hello <b>{{current_user.user_name}}</b> !! Up for a challenge on your spelling skills?</p>
+<p style="font-size:30px"> You have <b>{{user_voca_no}} </b>entries of meaning and <b>{{word_no}}</b> words in your vocabulary database!! </p>
+<form method="POST">
+  <h3 align="left">Enter number of tests to participate!!</h3>
+  <div class="input-group mb-3">
+    <input
+      class="form-control"
+      id="test_no_input"
+      name="test_no_input"
+      placeholder="Enter a number"
+    />
+    <input
+      class="form-control"
+      id="test_type"
+      name="test_type"
+      placeholder="Enter 'r' for random selection or 's' for sequential selection"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="submit">Start Test</button>
+    </div>
+  </div>
+
+</form>
+<!--passing flask jinja variable to html file script separate from index.js. Otherwise, jinja fails in JS -->
+<!--|tojson to convert from python data to javascript jason data type for non-integer data type-->
+<script type="text/javascript">
+  var testNo = {{testnumber}};
+  var testBank = {{test_vocas_bank|tojson}};
+  var currentTest = 1;
+  var testScore = 0;
+  var testType = {{test_type|tojson}};
+ </script>
+
+{% if testnumber != 0 %}
+  <div class="questions">
+    <h4 id="question">Test: 1 of {{testnumber}}</h4>
+    <h4 id="question_type">Test Type: {{test_type}}</h4>
+    <h4 id="score"></h4>
+    <h4 >Hint 1: the meaning of the word / expression is: </h4>
+    <p id="question_content" style="font-size:20px;">{{test_vocas_bank[0][1]}} </p>
+    <h4 >Hint 2: the word / expression start with the below letter: </h4>
+    <p id="question_1stletter" style="font-size:20px;">{{test_vocas_bank[0][0][0]}} </p>
+    <h4 >Hint 3: the length of the word / expression is: </h4>
+    <p id="question_length" style="font-size:20px;">{{word_length}} letters</p>
+    <br>
+    <div class="input-group mb-3">
+      <input type="text" id="test-answer" class="form-control" placeholder="Type your answer here" aria-label="answer_field" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="button" onclick="nextTest()">Submit</button>
+      </div>
+    </div>
+
+  </div>
+{% endif %}
+
+{% endblock %}
+
